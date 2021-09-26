@@ -1,0 +1,19 @@
+# Just a container which hosts the tools required for developing so developers
+# don't necessarily need to install ng cli etc locally.
+
+FROM node:15.11.0-alpine3.10
+
+RUN apk update \
+    && apk add --update alpine-sdk python \
+    && yarn global add @angular/cli@11.2.2 \
+    && yarn global add ng-openapi-gen \
+    && ng config --global cli.packageManager yarn \
+    && apk del alpine-sdk python \
+    && rm -rf /tmp/* /var/cache/apk/* *.tar.gz ~/.npm \
+    && npm cache clean --force \
+    && npm install -g npm@7.6.3 \
+    && apk add chromium \
+    && yarn cache clean \
+    && sed -i -e "s/bin\/ash/bin\/sh/" /etc/passwd
+
+ENV CHROME_BIN /usr/bin/chromium-browser

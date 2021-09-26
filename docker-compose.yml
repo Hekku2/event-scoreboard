@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  tools:
+    container_name: tools
+    build:
+      context: tools/.
+      dockerfile: Dockerfile.tools
+    working_dir: /app
+    volumes:
+      - ./site/:/app
+  
+  site:
+    container_name: site
+    image: node:15-alpine3.13
+    command: sh -c 'yarn && yarn start'
+    working_dir: /app
+    volumes:
+      - ./site/:/app
+    ports:
+      - '4200:4200'
