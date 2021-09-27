@@ -1,4 +1,9 @@
 {
+    "currentResult": {
+        "isActive": false,
+        "participant": "The best participant",
+        "score": ""
+    },
     "allSeries": [
         {
             "seriesName": "Senior Women",

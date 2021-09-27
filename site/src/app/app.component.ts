@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
-import { SeriesResultDto } from './shared/interfaces';
+import { CurrentResult, SeriesResultDto } from './shared/interfaces';
 import { ConfigService, ScoreService } from './shared/services';
 
 @Component({
@@ -15,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   selectedIndex: number = 0;
   selectedSeries: SeriesResultDto | undefined;
+  currentCompetitor: CurrentResult | undefined;
 
   loadedResults: SeriesResultDto[] = [];
 
@@ -40,6 +41,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   updateResults() {
     this.scoreService.getScores().subscribe(all => {
+      this.currentCompetitor = all.currentResult;
       all.allSeries.forEach(resultDto => {
         const match = this.loadedResults.find(s => s.seriesName === resultDto.seriesName)
         if (match) {
