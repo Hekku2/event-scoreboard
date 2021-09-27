@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { SeriesResultDto } from '../shared/interfaces';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { SeriesScores } from '../shared/interfaces';
+import { ScoreService } from '../shared/services';
 
 @Component({
     selector: 'app-series-result',
@@ -7,5 +10,11 @@ import { SeriesResultDto } from '../shared/interfaces';
     styleUrls: []
 })
 export class SeriesResultComponent {
-    @Input() result: SeriesResultDto | undefined;
+    public showResults: Observable<boolean>;
+
+    @Input() result: SeriesScores | undefined;
+
+    public constructor(private scoreService: ScoreService) {
+        this.showResults = this.scoreService.getCurrentCompetitor().pipe(map(m => !m || !m.isActive));
+    }
 }

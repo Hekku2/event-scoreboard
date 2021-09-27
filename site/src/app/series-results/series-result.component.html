@@ -1,5 +1,8 @@
-<h1>{{result?.seriesName}}</h1>
+<div *ngIf="(showResults | async)">
+    <h1>{{result?.seriesName}}</h1>
 
-<li *ngFor="let resultRow of result?.results">
-    {{resultRow}}
-</li>
+    <li *ngFor="let resultRow of result?.results">
+        {{resultRow}}
+    </li>
+
+</div>

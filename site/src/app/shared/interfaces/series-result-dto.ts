@@ -1,9 +1,9 @@
-export interface AllSeries {
-    allSeries: SeriesResultDto[];
+export interface EventScoreboardStatus {
+    allSeries: SeriesScores[];
     currentResult: CurrentResult | undefined;
 }
 
-export interface SeriesResultDto {
+export interface SeriesScores {
     seriesName: string;
     results: string[];
 }

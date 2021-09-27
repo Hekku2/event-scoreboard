@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
-import { CurrentResult, SeriesResultDto } from './shared/interfaces';
+import { CurrentResult, SeriesScores } from './shared/interfaces';
 import { ConfigService, ScoreService } from './shared/services';
 
 @Component({
@@ -14,10 +14,10 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'event-scoreboard';
 
   selectedIndex: number = 0;
-  selectedSeries: SeriesResultDto | undefined;
+  selectedSeries: SeriesScores | undefined;
   currentCompetitor: CurrentResult | undefined;
 
-  loadedResults: SeriesResultDto[] = [];
+  loadedResults: SeriesScores[] = [];
 
   constructor(private scoreService: ScoreService, private configService: ConfigService) { }
 
@@ -26,23 +26,24 @@ export class AppComponent implements OnInit, OnDestroy {
     this.configService.updateConfiguration();
 
     this.configService.currentConfig.subscribe(config => {
+      this.scoreService.updateScores();
+      this.advanceSeries();
       this.subscription.add(timer(0, config.seriesChangeTime).subscribe(n => this.advanceSeries()));
-      this.subscription.add(timer(0, config.backgroundUpdateTime).subscribe(n => this.updateResults()));
+      this.subscription.add(timer(0, config.backgroundUpdateTime).subscribe(n => this.scoreService.updateScores()));
     });
 
     this.selectedSeries = undefined;
 
-    this.updateResults();
+    this.listenForScoreboardChanges();
   }
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  updateResults() {
-    this.scoreService.getScores().subscribe(all => {
-      this.currentCompetitor = all.currentResult;
-      all.allSeries.forEach(resultDto => {
+  private listenForScoreboardChanges() {
+    this.scoreService.getCurrentScoreboard().subscribe(all => {
+      all.forEach(resultDto => {
         const match = this.loadedResults.find(s => s.seriesName === resultDto.seriesName)
         if (match) {
           match.results = resultDto.results;
