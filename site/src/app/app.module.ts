@@ -1,10 +1,11 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SeriesResultComponent } from './series-results/series-result.component';
+import { ConfigService } from './shared/services/config.service';
+import { ScoreService } from './shared/services/score.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,10 @@ import { SeriesResultComponent } from './series-results/series-result.component'
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ScoreService,
+    ConfigService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

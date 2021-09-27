@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Subscription, timer } from 'rxjs';
-import { SeriesResultDto } from './shared/series-result-dto';
-import { FilelistDto } from './shared/filelist-dto';
+import { SeriesResultDto } from './shared/interfaces';
+import { ConfigService, ScoreService } from './shared/services';
 
 @Component({
   selector: 'app-root',
@@ -14,19 +13,22 @@ export class AppComponent implements OnInit, OnDestroy {
 
   title = 'event-scoreboard';
 
-  private seriesChangeTime = 5000;
-  private backgroundUpdateTime = 10000;
-
   selectedIndex: number = 0;
   selectedSeries: SeriesResultDto | undefined;
 
   loadedResults: SeriesResultDto[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private scoreService: ScoreService, private configService: ConfigService) { }
 
   ngOnInit(): void {
-    this.subscription.add(timer(0, this.seriesChangeTime).subscribe(n => this.advanceSeries()));
-    this.subscription.add(timer(0, this.backgroundUpdateTime).subscribe(n => this.updateResults()));
+
+    this.configService.updateConfiguration();
+
+    this.configService.currentConfig.subscribe(config => {
+      this.subscription.add(timer(0, config.seriesChangeTime).subscribe(n => this.advanceSeries()));
+      this.subscription.add(timer(0, config.backgroundUpdateTime).subscribe(n => this.updateResults()));
+    });
+
     this.selectedSeries = undefined;
 
     this.updateResults();
@@ -37,29 +39,16 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   updateResults() {
-    console.log('Updating results.');
-    this.http.get('../assets/results/filelist.json').subscribe(
-      data => {
-        var filelistDto = data as FilelistDto;
-        var files = filelistDto.files;
-        console.log('Filelist fetched.');
-
-        files.forEach(filename => {
-          this.http.get(`../assets/results/${filename}`).subscribe(result => {
-            console.log(result);
-            var resultDto = result as SeriesResultDto;
-            console.log(`Updating ${resultDto.seriesName}`);
-
-            const match = this.loadedResults.find(s => s.seriesName === resultDto.seriesName)
-            if (match) {
-              match.results = resultDto.results;
-            } else {
-              this.loadedResults.push(resultDto);
-            }
-          });
-        });
-      }
-    );
+    this.scoreService.getScores().subscribe(all => {
+      all.allSeries.forEach(resultDto => {
+        const match = this.loadedResults.find(s => s.seriesName === resultDto.seriesName)
+        if (match) {
+          match.results = resultDto.results;
+        } else {
+          this.loadedResults.push(resultDto);
+        }
+      });
+    });
   }
 
   advanceSeries() {

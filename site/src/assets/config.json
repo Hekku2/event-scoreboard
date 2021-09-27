@@ -1,0 +1,5 @@
+{
+    "resultUrl": "../assets/results/allSeries.json",
+    "seriesChangeTime": 2000,
+    "backgroundUpdateTime": 10000
+}

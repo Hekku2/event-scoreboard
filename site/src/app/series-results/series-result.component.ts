@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SeriesResultDto } from '../shared/series-result-dto';
+import { SeriesResultDto } from '../shared/interfaces';
 
 @Component({
     selector: 'app-series-result',
