@@ -22,7 +22,6 @@ Usage: Update `allSeries.json` with new results. These are shown automatically.
 If single user needs to be shown, set `isActive` to `true` in `currentResult`.
 To return back to normal slide show mode, set it back to `false`.
 
-
 ## Score format
 
 `allSeries.json` example:
@@ -32,6 +31,7 @@ To return back to normal slide show mode, set it back to `false`.
     "currentResult": {
         "isActive": false,
         "participant": "The best participant",
+        "team": "Optional team",
         "score": ""
     },
     "allSeries": [
