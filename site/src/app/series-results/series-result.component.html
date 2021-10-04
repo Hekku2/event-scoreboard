@@ -1,4 +1,4 @@
-<div *ngIf="(showResults | async)">
+<div *ngIf="(showResults | async)" class="results">
     <h1>{{result?.seriesName}}</h1>
 
     <li *ngFor="let resultRow of result?.results">

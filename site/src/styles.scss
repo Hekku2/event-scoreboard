@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles */
+html {
+    height: 100%;
+}
+
+body {
+    background-image: url(/assets/img/background.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+h1 {
+    width: 100%;
+    margin-top: 25%;
+    font-size: 5.9vw;
+}

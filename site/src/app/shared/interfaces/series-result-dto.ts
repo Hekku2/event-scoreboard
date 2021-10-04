@@ -11,5 +11,6 @@ export interface SeriesScores {
 export interface CurrentResult {
     isActive: boolean;
     participant: string;
+    team: string;
     score: string;
 }

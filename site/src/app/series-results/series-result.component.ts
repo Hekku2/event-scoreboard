@@ -7,7 +7,7 @@ import { ScoreService } from '../shared/services';
 @Component({
     selector: 'app-series-result',
     templateUrl: './series-result.component.html',
-    styleUrls: []
+    styleUrls: ['./series-result.component.scss']
 })
 export class SeriesResultComponent {
     public showResults: Observable<boolean>;
