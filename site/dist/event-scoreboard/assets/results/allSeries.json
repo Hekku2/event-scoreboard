@@ -1,30 +1,50 @@
 {
     "currentResult": {
         "isActive": false,
-        "participant": "The best participant",
-        "score": ""
+        "seriesName": "Senior Women Doubles",
+        "participants": [
+            "Kilpailija-Ykkönen Etunimi-Kaksi",
+            "Sukunimi Kaksi"
+        ],
+        "team": "Team Joukkue Porukka",
+        "score": "Total: 120, A 20, E 20, D 20, HJ 0"
     },
     "allSeries": [
         {
-            "seriesName": "Senior Women",
+            "seriesName": "Senior Women 1/2",
             "results": [
-                "1. Meikäläinen, Maija",
-                "1. Meikäläinen, Maija",
-                "1. Meikäläinen, Maija",
-                "1. Meikäläinen, Maija",
-                "1. Meikäläinen, Maija",
-                "1. Meikäläinen, Maija",
-                "1. Meikäläinen, Maija",
-                "1. Meikäläinen, Maija",
-                "1. Meikäläinen, Maija"
+                "1. Meikäläinen, MaijaPidempi, 120",
+                "2. Meikäläinen-Isolla sukunimellä, Maija, 80",
+                "3. Lyhyt, Mari, 67",
+                "4. Taiteilijanimi",
+                "5. Nimigeneraattori",
+                "6. Meikäläinen, Maija",
+                "7. Meikäläinen, Maija",
+                "8. Meikäläinen, Maija",
+                "9. Meikäläinen, Maija",
+                "10. Meikäläinen, Maija"
+            ]
+        },
+        {
+            "seriesName": "Senior Women 2/2",
+            "results": [
+                "11. Meikäläinen, MaijaPidempi",
+                "12. Meikäläinen-Isolla sukunimellä, Maija",
+                "13. Lyhyt, Mari",
+                "14. Taiteilijanimi",
+                "15. Nimigeneraattori",
+                "16. Meikäläinen, Maija",
+                "17. Meikäläinen, Maija",
+                "18. Meikäläinen, Maija",
+                "19. Meikäläinen, Maija"
             ]
         },
         {
             "seriesName": "Senior Men",
             "results": [
-                "1. Meikäläinen, Maija",
-                "1. Meikäläinen, Maija",
-                "1. Meikäläinen, Maija",
+                "1. Meikäläinen, MaijaPidempi",
+                "1. Meikäläinen-Isolla sukunimellä, Maija",
+                "1. Lyhyt, Mari",
                 "1. Meikäläinen, Maija",
                 "1. Meikäläinen, Maija",
                 "1. Meikäläinen, Maija",
