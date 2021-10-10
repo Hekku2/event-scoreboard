@@ -46,4 +46,4 @@ testem.log
 Thumbs.db
 
 node_modules
-assets/img/background.svg
+src/assets/img/background.svg
