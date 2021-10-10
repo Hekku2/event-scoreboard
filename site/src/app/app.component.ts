@@ -27,7 +27,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.configService.currentConfig.subscribe(config => {
       this.scoreService.updateScores();
-      this.advanceSeries();
       this.subscription.add(timer(0, config.seriesChangeTime).subscribe(n => this.advanceSeries()));
       this.subscription.add(timer(0, config.backgroundUpdateTime).subscribe(n => this.scoreService.updateScores()));
     });
@@ -42,7 +41,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private listenForScoreboardChanges() {
-    this.scoreService.getCurrentScoreboard().subscribe(all => {
+    this.subscription.add(this.scoreService.getCurrentScoreboard().subscribe(all => {
       all.forEach(resultDto => {
         const match = this.loadedResults.find(s => s.seriesName === resultDto.seriesName)
         if (match) {
@@ -51,11 +50,16 @@ export class AppComponent implements OnInit, OnDestroy {
           this.loadedResults.push(resultDto);
         }
       });
-    });
+
+      if (this.selectedSeries === undefined) {
+        // Load instantly if no results are found
+        console.log('Initial load');
+        this.advanceSeries();
+      }
+    }));
   }
 
   advanceSeries() {
-    console.log('Advancing');
     if (this.loadedResults.length === 0) {
       console.log('No results found.');
       this.selectedSeries = undefined;
