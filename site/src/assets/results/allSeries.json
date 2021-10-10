@@ -1,9 +1,12 @@
 {
     "currentResult": {
-        "isActive": false,
-        "participant": "Meikäläinen Maija",
+        "isActive": true,
+        "participants": [
+            "Meikäläinen Maija",
+            "Meikäläinen Maija2"
+        ],
         "team": "Team Joukkue Porukka",
-        "score": ""
+        "score": "Total: 120, A 20, E 20, D 20, HJ 0"
     },
     "allSeries": [
         {

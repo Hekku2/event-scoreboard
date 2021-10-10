@@ -30,7 +30,10 @@ To return back to normal slide show mode, set it back to `false`.
 {
     "currentResult": {
         "isActive": false,
-        "participant": "The best participant",
+        "participants": [
+            "Participant name a",
+            "Participant name b"
+        ],
         "team": "Optional team",
         "score": ""
     },

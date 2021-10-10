@@ -1,9 +1,12 @@
 <div *ngIf="(currentResult | async)?.isActive">
-    <h2>
-        {{(currentResult | async)?.participant}}
+    <h2 *ngFor="let resultRow of (currentResult | async)?.participants">
+        {{resultRow}}
     </h2>
     <h2>
         {{(currentResult | async)?.team}}
+    </h2>
+    <h2>
+        {{(currentResult | async)?.score}}
     </h2>
 
 </div>
