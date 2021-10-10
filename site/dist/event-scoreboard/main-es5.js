@@ -107,8 +107,6 @@
             this.configService.currentConfig.subscribe(function (config) {
               _this.scoreService.updateScores();
 
-              _this.advanceSeries();
-
               _this.subscription.add(Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["timer"])(0, config.seriesChangeTime).subscribe(function (n) {
                 return _this.advanceSeries();
               }));
@@ -130,7 +128,7 @@
           value: function listenForScoreboardChanges() {
             var _this2 = this;
 
-            this.scoreService.getCurrentScoreboard().subscribe(function (all) {
+            this.subscription.add(this.scoreService.getCurrentScoreboard().subscribe(function (all) {
               all.forEach(function (resultDto) {
                 var match = _this2.loadedResults.find(function (s) {
                   return s.seriesName === resultDto.seriesName;
@@ -142,13 +140,18 @@
                   _this2.loadedResults.push(resultDto);
                 }
               });
-            });
+
+              if (_this2.selectedSeries === undefined) {
+                // Load instantly if no results are found
+                console.log('Initial load');
+
+                _this2.advanceSeries();
+              }
+            }));
           }
         }, {
           key: "advanceSeries",
           value: function advanceSeries() {
-            console.log('Advancing');
-
             if (this.loadedResults.length === 0) {
               console.log('No results found.');
               this.selectedSeries = undefined;
