@@ -13,5 +13,6 @@ export interface CurrentResult {
     participants: string[];
     seriesName: string;
     team: string;
-    score: string;
+    scoreTotal: string;
+    scoreParts: string;
 }

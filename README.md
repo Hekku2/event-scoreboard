@@ -35,7 +35,8 @@ To return back to normal slide show mode, set it back to `false`.
             "Participant name b"
         ],
         "team": "Optional team",
-        "score": ""
+        "scoreTotal": "",
+        "scoreParts": ""
     },
     "allSeries": [
         {
