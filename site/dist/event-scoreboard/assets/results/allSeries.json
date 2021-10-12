@@ -1,13 +1,14 @@
 {
     "currentResult": {
-        "isActive": false,
-        "seriesName": "Senior Women Doubles",
+        "isActive": true,
+        "seriesName": "",
         "participants": [
             "Kilpailija-Ykkönen Etunimi-Kaksi",
             "Sukunimi Kaksi"
         ],
         "team": "Team Joukkue Porukka",
-        "score": "Total: 120, A 20, E 20, D 20, HJ 0"
+        "scoreTotal": "Total: 120.5",
+        "scoreParts": "A 20.5, E 20.5, D 20.5, HJ 0.0"
     },
     "allSeries": [
         {
